@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.odde.bbuddy.account.view.AccountsActivity;
 import com.odde.bbuddy.account.view.AddAccountActivity;
+import com.odde.bbuddy.budget.view.AddBudgetActivity;
+import com.odde.bbuddy.budget.view.BudgetsActivity;
 import com.odde.bbuddy.dashboard.view.DashboardActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_accounts:
                         setFragment(new AccountsActivity());
                         setAdd(AddAccountActivity.class);
+                    case R.id.menu_budgets:
+                        setFragment(new BudgetsActivity());
+                        setAdd(AddBudgetActivity.class);
                         return true;
                 }
                 return false;
@@ -56,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         return (BottomNavigationView) findViewById(R.id.navigation);
     }
 
-    private void setAdd(final Class<AddAccountActivity> activityClass) {
+    private void setAdd(final Class activityClass) {
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.setDisplayShowHomeEnabled(false);
         mActionBar.setDisplayShowTitleEnabled(false);
