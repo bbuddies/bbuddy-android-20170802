@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
-    android:text="2017-08 1000"
-    android:textAppearance="?android:attr/textAppearanceLarge" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://robobinding.org/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        bind:itemLayout="@android:layout/simple_list_item_1"
+        bind:itemMapping="[text1.text:{displayOfBudgets}]"
+        bind:source="{budgets}" />
+</RelativeLayout>
 

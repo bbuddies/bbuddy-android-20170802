@@ -8,13 +8,31 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.odde.bbuddy.R;
+import com.odde.bbuddy.account.viewmodel.PresentableAccounts;
+import com.odde.bbuddy.budget.viewmodel.PresentableBudgets;
+
+import org.robobinding.ViewBinder;
+
+import javax.inject.Inject;
+
+import static com.odde.bbuddy.di.component.ActivityComponentFactory.createActivityComponentBy;
 
 public class BudgetsActivity extends Fragment {
 
-    @Nullable
+    @Inject
+    PresentableBudgets presentableBudgets;
+
+    @Inject
+    ViewBinder viewBinder;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        inflater.inflate(R.layout.activity_budgets, container);
-        return super.onCreateView(inflater, container, savedInstanceState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        createActivityComponentBy(getActivity()).inject(this);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return viewBinder.inflateAndBindWithoutAttachingToRoot(R.layout.activity_budgets, presentableBudgets, container);
     }
 }

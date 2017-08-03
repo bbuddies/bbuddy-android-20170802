@@ -7,6 +7,8 @@ import com.odde.bbuddy.authentication.model.Authenticator;
 import com.odde.bbuddy.authentication.view.AuthenticationView;
 import com.odde.bbuddy.authentication.viewmodel.AutologinAuthentication;
 import com.odde.bbuddy.authentication.viewmodel.EditableAuthentication;
+import com.odde.bbuddy.budget.viewmodel.EditableBudget;
+import com.odde.bbuddy.budget.viewmodel.PresentableBudgets;
 import com.odde.bbuddy.common.StringResources;
 import com.odde.bbuddy.common.validation.Validator;
 import com.odde.bbuddy.dashboard.view.DashboardNavigation;
@@ -47,6 +49,11 @@ public class RobobindingModule {
     @Provides @ActivityScope @Named("editableAuthentication")
     public PresentationModelChangeSupport providePresentationModelChangeSupportForEditableAuthentication(EditableAuthentication editableAuthentication) {
         return new PresentationModelChangeSupport(editableAuthentication);
+    }
+
+    @Provides @ActivityScope @Named("budgets")
+    public PresentationModelChangeSupport providePresentationModelChangeSupportForBudgets(PresentableBudgets presentableBudgets) {
+        return new PresentationModelChangeSupport(presentableBudgets);
     }
 
     @Provides @ActivityScope
