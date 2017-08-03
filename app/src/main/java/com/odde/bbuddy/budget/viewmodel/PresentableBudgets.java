@@ -1,6 +1,9 @@
 package com.odde.bbuddy.budget.viewmodel;
 
+import com.odde.bbuddy.account.api.AccountsApi;
 import com.odde.bbuddy.account.viewmodel.Account;
+import com.odde.bbuddy.budget.api.Budgets;
+import com.odde.bbuddy.common.functional.Consumer;
 import com.odde.bbuddy.di.scope.ActivityScope;
 
 import org.robobinding.annotation.ItemPresentationModel;
@@ -24,7 +27,7 @@ import dagger.Lazy;
 @PresentationModel
 @ActivityScope
 public class PresentableBudgets implements HasPresentationModelChangeSupport {
-
+    private final Budgets budgets;
     private final Lazy<PresentationModelChangeSupport> changeSupportLazyLoader;
     private final List<Budget> allBudgets = new ArrayList<>();
 
@@ -34,8 +37,10 @@ public class PresentableBudgets implements HasPresentationModelChangeSupport {
     }
 
     @Inject
-    public PresentableBudgets(@Named("budgets") Lazy<PresentationModelChangeSupport> changeSupportLazyLoader) {
+    public PresentableBudgets(Budgets budgets, @Named("budgets") Lazy<PresentationModelChangeSupport> changeSupportLazyLoader) {
+        this.budgets = budgets;
         this.changeSupportLazyLoader = changeSupportLazyLoader;
+        refresh();
     }
 
     @Override
@@ -43,8 +48,22 @@ public class PresentableBudgets implements HasPresentationModelChangeSupport {
         return changeSupport();
     }
 
+    public void refresh() {
+        budgets.processAllBudgets(new Consumer<List<Budget>>() {
+            @Override
+            public void accept(List<Budget> list) {
+                allBudgets.clear();
+                allBudgets.addAll(list);
+                changeSupport().refreshPresentationModel();
+            }
+        });
+    }
+
     private PresentationModelChangeSupport changeSupport() {
         return this.changeSupportLazyLoader.get();
     }
+
 }
+
+
 

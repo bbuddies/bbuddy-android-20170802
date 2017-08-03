@@ -11,7 +11,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         bind:itemLayout="@android:layout/simple_list_item_1"
-        bind:itemMapping="[text1.text:{displayOfBudgets}]"
+        bind:itemMapping="[text1.text:{displayOfBudget}]"
         bind:source="{budgets}" />
 </RelativeLayout>
 
