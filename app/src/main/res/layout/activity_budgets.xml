@@ -5,13 +5,20 @@
     android:layout_height="match_parent"
     android:layout_centerInParent="true">
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        bind:onClick = "search"/>
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         bind:itemLayout="@android:layout/simple_list_item_1"
         bind:itemMapping="[text1.text:{displayOfBudget}]"
-        bind:source="{budgets}" />
+        bind:source="{budgets}"
+        android:layout_below="@+id/button2" />
 </RelativeLayout>
 

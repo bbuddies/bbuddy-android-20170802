@@ -24,6 +24,7 @@
         <activity android:name=".budget.view.AddBudgetActivity" />
         <activity android:name=".account.view.EditDeleteAccountActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name="com.odde.bbuddy.budget.view.BudgetsQueryByTimeActivity"></activity>
     </application>
 
 </manifest>

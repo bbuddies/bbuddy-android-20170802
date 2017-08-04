@@ -24,7 +24,7 @@ public class EditableBudget {
         this.budgets = budgets;
     }
 
-    private String month;
+    private String time;
     private String amount;
 
     public void add() {
@@ -35,17 +35,17 @@ public class EditableBudget {
     @NonNull
     private Budget budget() {
         Budget budget = new Budget();
-        budget.setMonth(month);
+        budget.setMonth(time);
         budget.setAmount(Integer.parseInt(amount));
         return budget;
     }
 
-    public String getMonth() {
-        return month;
+    public String getTime() {
+        return time;
     }
 
-    public void setMonth(String month) {
-        this.month = month;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getAmount() {

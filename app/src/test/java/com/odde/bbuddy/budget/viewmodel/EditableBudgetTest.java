@@ -19,27 +19,27 @@ public class EditableBudgetTest {
 
     @Test
     public void add_will_navigate_to_budgets() {
-        addBudget("2017-08", "1000");
+        addBudget("2017-08-1", "1000");
 
         verify(mockBudgetsNavigation).navigate();
     }
 
     @Test
     public void add_will_call_domain_object_to_add() {
-        addBudget("2017-08", "1000");
+        addBudget("2017-08-01", "1000");
 
-        verifyBudgetsAddBudgetWith("2017-08", 1000);
+        verifyBudgetsAddBudgetWith("2017-08-01", 1000);
     }
 
     private void verifyBudgetsAddBudgetWith(String expectedMonth, int expectedAmount) {
         ArgumentCaptor<Budget> captor = forClass(Budget.class);
         verify(mockBudgets).addBudget(captor.capture());
-        assertThat(captor.getValue().getMonth()).isEqualTo(expectedMonth);
+        assertThat(captor.getValue().getTimeString()).isEqualTo(expectedMonth);
         assertThat(captor.getValue().getAmount()).isEqualTo(expectedAmount);
     }
 
     private void addBudget(String month, String amount) {
-        editableBudget.setMonth(month);
+        editableBudget.setTime(month);
         editableBudget.setAmount(amount);
         editableBudget.add();
     }
